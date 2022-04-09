@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module2"
+Attribute VB_Name = "Module21"
 Sub stocks_summary()
 ' Create a script that will loop through all the stocks for one year and output the following information:
 
@@ -69,19 +69,19 @@ For Each sheet In Worksheets
       If (yearly_change > 0) Then
                     sheet.Range("K" & summarytablerow).Interior.ColorIndex = 4
                     
-                ElseIf (Yearly_Price_Change <= 0) Then
+                ElseIf (yearly_change <= 0) Then
                 
                     sheet.Range("K" & summarytablerow).Interior.ColorIndex = 3
                 End If
       
-      ' Percent change assuming a stock price of $0.01 if opening prce = 0:
+      ' Percent change assuming a stock price of $0.01 if opening price = 0:
         
         If opening_price = 0 Then
         
-            sheet.Range("L" & summarytablerow).Value = (sheet.Cells(I, 6).Value - opening_price) / 0.01
+            sheet.Range("L" & summarytablerow).Value = yearly_change / 0.01
         Else
       
-            sheet.Range("L" & summarytablerow).Value = (sheet.Cells(I, 6).Value - opening_price) / opening_price
+            sheet.Range("L" & summarytablerow).Value = yearly_change / opening_price
             
         End If
 
