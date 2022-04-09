@@ -74,7 +74,7 @@ For Each sheet In Worksheets
                     sheet.Range("K" & summarytablerow).Interior.ColorIndex = 3
                 End If
       
-      ' Percent change:
+      ' Percent change assuming a stock price of $0.01 if opening prce = 0:
         
         If opening_price = 0 Then
         
