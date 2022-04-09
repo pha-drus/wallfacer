@@ -52,20 +52,16 @@ For Each sheet In Worksheets
   
   For I = 2 To bottom
   
-      ' Check if we are still within the same credit card brand, if it is not...
     If sheet.Cells(I + 1, 1).Value <> sheet.Cells(I, 1).Value Then
     
       closing_price = sheet.Cells(I, 6).Value
 
-      ' Set the Brand name
       ticker_symbol = sheet.Cells(I, 1).Value
 
-      ' Add to the Brand Total
       total_volume = total_volume + sheet.Cells(I, 7).Value
       
       yearly_change = closing_price - opening_price
 
-      ' Print the Credit Card Brand in the Summary Table
       sheet.Range("J" & summarytablerow).Value = ticker_symbol
 
       sheet.Range("K" & summarytablerow).Value = yearly_change
@@ -82,29 +78,25 @@ For Each sheet In Worksheets
         
         If opening_price = 0 Then
         
-            sheet.Range("L" & summarytablerow).Value = 0
-            
+            sheet.Range("L" & summarytablerow).Value = (sheet.Cells(I, 6).Value - opening_price) / 0.01
         Else
       
             sheet.Range("L" & summarytablerow).Value = (sheet.Cells(I, 6).Value - opening_price) / opening_price
             
         End If
 
-      ' Print the Brand Amount to the Summary Table
+
       sheet.Range("M" & summarytablerow).Value = total_volume
 
-      ' Add one to the summary table row
+
       summarytablerow = summarytablerow + 1
       
       opening_price = sheet.Cells(I + 1, 3).Value
       
-      ' Reset the Brand Total
       total_volume = 0
 
-    ' If the cell immediately following a row is the same brand...
     Else
 
-      ' Add to the Brand Total
       total_volume = total_volume + sheet.Cells(I, 7).Value
       
       
